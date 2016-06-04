@@ -2,8 +2,9 @@ Cryptography by example
 =======================
 
 Using symmetrical encryption to store sensitive data in the database.
-Wrap the desired model field with :class:`EncryptedField` to easily
-protect its contents.
+Wrap the desired model field with
+:class:`~django_cryptography.fields.EncryptedField` to easily protect
+its contents.
 
 .. code-block:: python
 
@@ -17,5 +18,6 @@ protect its contents.
        sensitive_data = EncryptedField(models.CharField(max_length=50))
 
 The data will now be automatically encrypted when saved to the
-database. Since :class:`EncryptedField` uses symmetrical encryption,
-this allows for bi-directional data retrieval.
+database. Since :class:`~django_cryptography.fields.EncryptedField`
+uses symmetrical encryption, this allows for bi-directional data
+retrieval.
