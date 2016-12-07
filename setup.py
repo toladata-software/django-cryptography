@@ -71,8 +71,6 @@ class DjangoTest(TestCommand):
         self.reverse = False
         self.debug_sql = False
 
-        self.output_dir = None
-
     def finalize_options(self):
         self.verbosity = self.verbose
         if self.settings:
@@ -90,9 +88,6 @@ class DjangoTest(TestCommand):
         self.keepdb = bool(self.keepdb)
         self.reverse = bool(self.reverse)
         self.debug_sql = bool(self.debug_sql)
-
-        if self.output_dir is None:
-            self.output_dir = 'testxml'
 
     @NonDataProperty
     def test_args(self):
@@ -132,7 +127,7 @@ class DjangoTest(TestCommand):
             pattern=self.pattern, top_level=self.top_level_directory,
             verbosity=self.verbose, interactive=(not self.noinput),
             failfast=self.failfast, keepdb=self.keepdb, reverse=self.reverse,
-            debug_sql=self.debug_sql, output_dir=self.output_dir
+            debug_sql=self.debug_sql
         )
         failures = test_runner.run_tests(self.test_labels)
 
@@ -148,7 +143,7 @@ setup(
     author_email='george@georgemarshall.name',
     license='BSD',
     classifiers=[
-        'Development Status :: 4 - Beta',
+        'Development Status :: 5 - Production/Stable',
         'Environment :: Web Environment',
         'Framework :: Django',
         'Intended Audience :: Developers',
