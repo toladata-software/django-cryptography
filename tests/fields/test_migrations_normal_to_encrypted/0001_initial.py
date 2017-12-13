@@ -107,4 +107,16 @@ class Migration(migrations.Migration):
                 ('field', django_cryptography.fields.PickledField()),
             ],
         ),
+        migrations.CreateModel(
+            name='EncryptedPasswordModel',
+            fields=[
+                ('id', models.AutoField(
+                    auto_created=True,
+                    primary_key=True,
+                    serialize=False,
+                    verbose_name='ID')),
+                ('username', models.CharField(max_length=15)),
+                ('password', models.CharField(max_length=15)),
+            ],
+        ),
     ]

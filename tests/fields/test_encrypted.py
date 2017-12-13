@@ -20,6 +20,7 @@ from .models import (
     EncryptedNullableIntegerModel,
     EncryptedTTLIntegerModel,
     OtherEncryptedTypesModel,
+    EncryptedPasswordModel,
 )
 
 
@@ -49,6 +50,13 @@ class TestSaveLoad(TestCase):
         self.assertEqual(instance.time, loaded.time)
         self.assertTrue(instance.auto_now)
         self.assertEqual(instance.auto_now, loaded.auto_now)
+
+    def test_password(self):
+        instance = EncryptedPasswordModel(username='user', password='pass')
+        instance.save()
+        loaded = EncryptedPasswordModel.objects.get()
+        self.assertEqual(instance.username, loaded.username)
+        self.assertEqual(instance.password, loaded.password)
 
     def test_default_null(self):
         instance = EncryptedNullableIntegerModel()
@@ -98,6 +106,24 @@ class TestSaveLoad(TestCase):
 
 
 class TestQuerying(TestCase):
+    def setUp(self):
+        self.objs = [
+            EncryptedPasswordModel.objects.create(username='user1', password='pass1'),
+            EncryptedPasswordModel.objects.create(username='user2', password='pass2'),
+            EncryptedPasswordModel.objects.create(username='user3', password='pass3'),
+            EncryptedPasswordModel.objects.create(username='user4', password='pass4'),
+        ]
+
+    def test_supported(self):
+        qs = EncryptedPasswordModel.objects.filter(username__exact='user1')
+        self.assertEqual(len(qs), 1)
+
+    def test_unsupported(self):
+        with self.assertRaises(exceptions.FieldError):
+            EncryptedPasswordModel.objects.filter(password__exact='pass1')
+
+
+class TestNullQuerying(TestCase):
     def setUp(self):
         self.objs = [
             EncryptedNullableIntegerModel.objects.create(field=1),

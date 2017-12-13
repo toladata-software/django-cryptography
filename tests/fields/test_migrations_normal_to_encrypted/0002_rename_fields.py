@@ -66,4 +66,9 @@ class Migration(migrations.Migration):
             old_name='uuid',
             new_name='old_uuid',
         ),
+        migrations.RenameField(
+            model_name='encryptedpasswordmodel',
+            old_name='password',
+            new_name='old_password',
+        ),
     ]

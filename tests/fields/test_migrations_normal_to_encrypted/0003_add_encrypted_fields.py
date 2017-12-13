@@ -90,4 +90,11 @@ class Migration(migrations.Migration):
                 models.UUIDField(default=None)),
             preserve_default=False,
         ),
+        migrations.AddField(
+            model_name='encryptedpasswordmodel',
+            name='password',
+            field=django_cryptography.fields.encrypt(
+                models.CharField(default=None, max_length=15)),
+            preserve_default=False,
+        ),
     ]

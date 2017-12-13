@@ -55,4 +55,8 @@ class Migration(migrations.Migration):
             model_name='otherencryptedtypesmodel',
             name='old_uuid',
         ),
+        migrations.RemoveField(
+            model_name='encryptedpasswordmodel',
+            name='old_password',
+        ),
     ]

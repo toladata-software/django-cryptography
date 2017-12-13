@@ -42,3 +42,8 @@ class OtherEncryptedTypesModel(models.Model):
 
 class EncryptedFieldSubclass(encrypt(models.IntegerField)):
     pass
+
+
+class EncryptedPasswordModel(models.Model):
+    username = models.CharField(max_length=15)
+    password = encrypt(models.CharField(max_length=15))
