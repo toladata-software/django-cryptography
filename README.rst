@@ -14,9 +14,6 @@ Do not forget to read the documentation_.
 .. image:: https://img.shields.io/codecov/c/github/georgemarshall/django-cryptography/stable/0.2.x.svg
    :target: https://codecov.io/gh/georgemarshall/django-cryptography/branch/stable%2F0.2.x
    :alt: Code coverage
-.. image:: https://www.quantifiedcode.com/api/v1/project/ceb16c3d35264fd0a1be165af1456d4e/snapshot/origin:stable:0.2.x:HEAD/badge.svg
-   :target: https://www.quantifiedcode.com/app/project/ceb16c3d35264fd0a1be165af1456d4e?branch=origin%2Fstable%2F0.2.x
-   :alt: Code issues
 
 Cryptography by example
 -----------------------
