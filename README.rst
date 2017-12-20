@@ -8,11 +8,11 @@ Cryptography_ as the backend provider.
 
 Do not forget to read the documentation_.
 
-.. image:: https://img.shields.io/travis/georgemarshall/django-cryptography/master.svg
+.. image:: https://img.shields.io/travis/georgemarshall/django-cryptography/stable/0.3.x.svg
    :target: https://travis-ci.org/georgemarshall/django-cryptography
    :alt: Builds
-.. image:: https://img.shields.io/codecov/c/github/georgemarshall/django-cryptography/master.svg
-   :target: https://codecov.io/gh/georgemarshall/django-cryptography/branch/master
+.. image:: https://img.shields.io/codecov/c/github/georgemarshall/django-cryptography/stable/0.3.x.svg
+   :target: https://codecov.io/gh/georgemarshall/django-cryptography/branch/stable%2F0.3.x
    :alt: Code coverage
 
 Cryptography by example
