@@ -1,8 +1,12 @@
 Releases
 ========
 
-0.4 - master_
--------------
+0.4 - 2020-01-28
+----------------
+
+* Dropped Django 1.8 and 2.0 support
+* Fixed Django 3.0 deprecation warning
+* Fixed migration test cases
 
 0.3 - 2017-12-19
 ----------------
