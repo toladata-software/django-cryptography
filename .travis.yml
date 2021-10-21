@@ -1,4 +1,3 @@
----
 language: python
 sudo: false
 cache: pip
@@ -21,8 +20,7 @@ before_install:
   - pip install --quiet codecov
 install:
   - pip install --quiet --pre $DJANGO
-  - python setup.py -q install
 script:
-  - coverage run setup.py -v test
+  - coverage run runtests.py
 after_success:
   - codecov
