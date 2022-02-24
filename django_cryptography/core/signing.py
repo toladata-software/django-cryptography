@@ -6,6 +6,7 @@ import re
 import struct
 import time
 import zlib
+import django
 
 from cryptography.exceptions import InvalidSignature
 from cryptography.hazmat.primitives import hashes
@@ -15,7 +16,8 @@ from django.core.signing import (BadSignature, JSONSerializer,
                                  SignatureExpired, b64_decode, b64_encode,
                                  get_cookie_signer)
 from django.utils import baseconv
-from django.utils.encoding import force_bytes, force_str, force_text
+from django.utils.encoding import force_bytes, force_str
+django.utils.encoding.force_text = force_str
 
 from ..utils.crypto import constant_time_compare, salted_hmac
 
