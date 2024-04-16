@@ -3,22 +3,13 @@ import datetime
 import struct
 import time
 import zlib
-<<<<<<< HEAD
 import django
-=======
 from typing import Any, Optional, Type, Union
->>>>>>> a5cde9beed707a14a2ef2f1f7f1fee172feb8b5e
 
 from cryptography.hazmat.primitives.hmac import HMAC
 from django.conf import settings
-<<<<<<< HEAD
-from django.core.signing import (BadSignature, JSONSerializer,
-                                 SignatureExpired, b64_decode, b64_encode,
-                                 get_cookie_signer)
-from django.utils import baseconv
 from django.utils.encoding import force_bytes, force_str
 django.utils.encoding.force_text = force_str
-=======
 from django.core.signing import (
     BadSignature,
     JSONSerializer,
@@ -29,7 +20,6 @@ from django.core.signing import (
 )
 from django.utils.encoding import force_bytes
 from django.utils.regex_helper import _lazy_re_compile
->>>>>>> a5cde9beed707a14a2ef2f1f7f1fee172feb8b5e
 
 from ..typing import Algorithm, Serializer
 from ..utils.crypto import HASHES, InvalidAlgorithm, constant_time_compare, salted_hmac
