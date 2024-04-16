@@ -4,7 +4,6 @@ import struct
 import time
 import zlib
 from typing import Any, Optional, Type, Union
-import django
 
 from cryptography.hazmat.primitives.hmac import HMAC
 from django.conf import settings
