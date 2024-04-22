@@ -9,12 +9,12 @@ Cryptography_ as the backend provider.
 Do not forget to read the documentation_.
 
 .. START HIDDEN
-.. image:: https://img.shields.io/travis/georgemarshall/django-cryptography/master.svg
-   :target: https://travis-ci.org/georgemarshall/django-cryptography
-   :alt: Builds
-.. image:: https://img.shields.io/codecov/c/github/georgemarshall/django-cryptography/master.svg
-   :target: https://codecov.io/gh/georgemarshall/django-cryptography/branch/master
-   :alt: Code coverage
+.. image:: https://img.shields.io/github/workflow/status/georgemarshall/django-cryptography/CI/master
+   :target: https://github.com/georgemarshall/django-cryptography/actions/workflows/main.yml
+   :alt: GitHub Workflow Status (branch)
+.. image:: https://img.shields.io/codecov/c/github/georgemarshall/django-cryptography/master
+   :target: https://app.codecov.io/gh/georgemarshall/django-cryptography/branch/master
+   :alt: Codecov branch
 .. END HIDDEN
 
 Cryptography by example
@@ -42,9 +42,9 @@ bi-directional data retrieval.
 Requirements
 ------------
 
-* Python_ (3.5, 3.6, 3.7, 3.8)
+* Python_ (3.7, 3.8, 3.9, 3.10, 3.11)
 * Cryptography_ (2.0+)
-* Django_ (1.11, 2.2, 3.0)
+* Django_ (3.2, 4.1, 4.2)
 
 Installation
 ------------

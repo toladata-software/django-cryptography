@@ -8,7 +8,7 @@ from django.utils import timezone
 
 from django_cryptography.fields import PickledField
 
-from .models import PickledModel, NullablePickledModel
+from .models import DefaultPickledModel, NullablePickledModel, PickledModel
 
 
 class TestSaveLoad(TestCase):
@@ -19,7 +19,7 @@ class TestSaveLoad(TestCase):
         self.assertEqual(instance.field, loaded.field)
 
     def test_string(self):
-        instance = PickledModel(field='Hello, world!')
+        instance = PickledModel(field="Hello, world!")
         instance.save()
         loaded = PickledModel.objects.get()
         self.assertEqual(instance.field, loaded.field)
@@ -28,6 +28,13 @@ class TestSaveLoad(TestCase):
         instance = PickledModel(field=timezone.now())
         instance.save()
         loaded = PickledModel.objects.get()
+        self.assertEqual(instance.field, loaded.field)
+
+    def test_default(self):
+        instance = DefaultPickledModel()
+        instance.save()
+        loaded = DefaultPickledModel.objects.get(pk=instance.pk)
+        self.assertEqual(loaded.field, b"")
         self.assertEqual(instance.field, loaded.field)
 
     def test_default_null(self):
@@ -60,18 +67,18 @@ class TestQuerying(TestCase):
 
     def test_exact(self):
         self.assertSequenceEqual(
-            NullablePickledModel.objects.filter(field__exact=[1]),
-            self.objs[:1])
+            NullablePickledModel.objects.filter(field__exact=[1]), self.objs[:1]
+        )
 
     def test_isnull(self):
         self.assertSequenceEqual(
-            NullablePickledModel.objects.filter(field__isnull=True),
-            self.objs[-1:])
+            NullablePickledModel.objects.filter(field__isnull=True), self.objs[-1:]
+        )
 
     def test_in(self):
         self.assertSequenceEqual(
-            NullablePickledModel.objects.filter(field__in=[[1], [2]]),
-            self.objs[:2])
+            NullablePickledModel.objects.filter(field__in=[[1], [2]]), self.objs[:2]
+        )
 
     def test_unsupported(self):
         with self.assertRaises(exceptions.FieldError):
@@ -89,21 +96,26 @@ class TestMigrations(TestCase):
 
 class TestSerialization(TestCase):
     test_data = (
-        # Python 3.4
-        '[{"fields": {"field": "gANdcQAoSwFLAk5lLg=="}, "model": "fields.pickledmodel", "pk": null}]'
-    ) if pickle.HIGHEST_PROTOCOL < 5 else (
-        # Python 3.8
-        '[{"fields": {"field": "gASVCgAAAAAAAABdlChLAUsCTmUu"}, "model": "fields.pickledmodel", "pk": null}]'
+        (
+            # Python 3.4
+            '[{"fields": {"field": "gANdcQAoSwFLAk5lLg=="}, '
+            '"model": "fields.pickledmodel", "pk": null}]'
+        )
+        if pickle.HIGHEST_PROTOCOL < 5
+        else (
+            # Python 3.8
+            '[{"fields": {"field": "gASVCgAAAAAAAABdlChLAUsCTmUu"}, '
+            '"model": "fields.pickledmodel", "pk": null}]'
+        )
     )
 
     def test_dumping(self):
         instance = PickledModel(field=[1, 2, None])
-        data = serializers.serialize('json', [instance])
+        data = serializers.serialize("json", [instance])
         self.assertEqual(json.loads(self.test_data), json.loads(data))
 
     def test_loading(self):
-        instance = list(serializers.deserialize('json',
-                                                self.test_data))[0].object
+        instance = list(serializers.deserialize("json", self.test_data))[0].object
         self.assertEqual([1, 2, None], instance.field)
 
 
